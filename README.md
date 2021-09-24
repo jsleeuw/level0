@@ -26,3 +26,4 @@ what else today..
 
 - i had to add a deployment key on GH
 - I THINK WE ARE READY TO MOVE ON TO OUR RAILS APP
+- OK, the last run of `cap production deploy` worked

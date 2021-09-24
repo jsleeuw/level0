@@ -28,7 +28,7 @@ set :keep_releases, 5
 set :rvm_type, :user
 set :rvm_ruby_version, '2.6.7@level0'
 
-append :linked_files, `config/secrets.yml`, 'config/application.yml'
+append :linked_files, 'config/secrets.yml', 'config/application.yml'
 # append :linked_files, 'config/database.yml', 'config/secrets.yml'
 # namespace :puma do
 #   desc 'Create Directories for Puma Pids and Socket'
