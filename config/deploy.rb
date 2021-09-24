@@ -41,27 +41,12 @@ set :rvm_ruby_version, '2.6.7@level0'
 #   before :start, :make_dirs
 # end
 
-# namespace :deploy do
-#   desc "Make sure local git is in sync with remote."
-#   task :check_revision do
-#     on roles(:app) do
-#       unless `git rev-parse HEAD` == `git rev-parse origin/master`
-#         puts "WARNING: HEAD is not the same as origin/master"
-#         puts "Run `git push` to sync changes."
-#         exit
-#       end
-#     end
-#   end
-
-#   task :symlink_secrets do
-#     on roles(:app) do
-#       execute "rm -rf #{release_path}/config/secrets.yml" 
-#       execute "ln -nfs ~/secrets.yml #{release_path}/config/secrets.yml"
-#     end
-#   end
-
-#   before :starting,     :check_revision
-#   after  :finishing,    :symlink_secrets
-#   after  :finishing,    :compile_assets
-#   after  :finishing,    :cleanup
-# end
+namespace :deploy do
+  task :symlink_secrets do
+    on roles(:app) do
+      execute "rm -rf #{release_path}/config/secrets.yml" 
+      execute "ln -nfs ~/secrets.yml #{release_path}/config/secrets.yml"
+    end
+  end
+  after  :finishing,    :symlink_secrets
+end
