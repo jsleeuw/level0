@@ -19,3 +19,10 @@
 - `source ~/.rvm/scripts/rvm`
 - `rvm install 2.6.7`
 - `rvm use 2.6.7`
+- wait tho, I also created a gemset
+- define any config files (application.yml, etc) to the vm shared (`/apps/level0/shared/config`) and add `append :linked_files`
+
+what else today..
+
+- i had to add a deployment key on GH
+- I THINK WE ARE READY TO MOVE ON TO OUR RAILS APP

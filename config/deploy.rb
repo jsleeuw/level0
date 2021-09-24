@@ -24,11 +24,12 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
-# set :linked_files, %w(config/application.yml config/database.yml config/puma.rb config/sidekiq.yml)
-# set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads)
 set :keep_releases, 5
 set :rvm_type, :user
 set :rvm_ruby_version, '2.6.7@level0'
+
+append :linked_files, `config/secrets.yml`, 'config/application.yml'
+# append :linked_files, 'config/database.yml', 'config/secrets.yml'
 # namespace :puma do
 #   desc 'Create Directories for Puma Pids and Socket'
 #   task :make_dirs do
@@ -41,12 +42,3 @@ set :rvm_ruby_version, '2.6.7@level0'
 #   before :start, :make_dirs
 # end
 
-namespace :deploy do
-  task :symlink_secrets do
-    on roles(:app) do
-      execute "rm -rf #{release_path}/config/secrets.yml" 
-      execute "ln -nfs ~/secrets.yml #{release_path}/config/secrets.yml"
-    end
-  end
-  after  :finishing,    :symlink_secrets
-end
