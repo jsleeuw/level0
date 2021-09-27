@@ -22,7 +22,19 @@
 - wait tho, I also created a gemset
 - define any config files (application.yml, etc) to the vm shared (`/apps/level0/shared/config`) and add `append :linked_files`
 
-what else today..
+### puma setup
+
+- `cap production puma:config`
+- on host: `cd ~/apps/diverst-api/shared`
+- on host: `mv puma.rb ./config/`
+- `cap production puma:systemd:config`
+- `cap production puma:start`
+
+### before running any cap commands:
+
+- `ssh-add ~/.ssh/id_rsa_azure_deploy`
+
+  what else today..
 
 - i had to add a deployment key on GH
 - I THINK WE ARE READY TO MOVE ON TO OUR RAILS APP

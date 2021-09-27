@@ -23,12 +23,15 @@ set :ssh_options,     { forward_agent: true }
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
+set :puma_enable_socket_service, true
 
 set :keep_releases, 5
 set :rvm_type, :user
 set :rvm_ruby_version, '2.6.7@level0'
 
-append :linked_files, 'config/secrets.yml', 'config/application.yml'
+append :linked_files, 'config/secrets.yml', 'config/application.yml', 'config/puma.rb'
+set :linked_dirs, %w(log tmp/pids tmp/sockets)
+
 # append :linked_files, 'config/database.yml', 'config/secrets.yml'
 # namespace :puma do
 #   desc 'Create Directories for Puma Pids and Socket'
@@ -41,4 +44,3 @@ append :linked_files, 'config/secrets.yml', 'config/application.yml'
 
 #   before :start, :make_dirs
 # end
-
